@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model operation {
+  id                               Int       @id @default(autoincrement())
+  product_id                       Int?
+  seller_id                        Int?
+  buyer_id                         Int?
+  quantity                         Int
+  price                            Decimal   @db.Decimal(10, 2)
+  purchase_date                    DateTime  @db.Date
+  users_operation_buyer_idTousers  users?    @relation("operation_buyer_idTousers", fields: [buyer_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  products                         products? @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users_operation_seller_idTousers users?    @relation("operation_seller_idTousers", fields: [seller_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model products {
+  id            Int         @id @default(autoincrement())
+  user_id       Int?
+  energy_amount Decimal     @db.Decimal(10, 2)
+  price         Decimal     @db.Decimal(10, 2)
+  font          String
+  month         Int
+  available     Boolean
+  operation     operation[]
+  users         users?      @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model sources {
+  id                Int     @id @default(autoincrement())
+  user_id           Int?
+  address           String
+  zip_code          String  @db.Char(8)
+  state             String
+  city              String
+  other_information String?
+  users             users?  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model users {
+  id                                   Int         @id @default(autoincrement())
+  name                                 String
+  password                             String
+  email                                String      @unique
+  cpf                                  String      @unique
+  operation_operation_buyer_idTousers  operation[] @relation("operation_buyer_idTousers")
+  operation_operation_seller_idTousers operation[] @relation("operation_seller_idTousers")
+  products                             products[]
+  sources                              sources[]
+}
