@@ -17,14 +17,6 @@ app
     .use('/products', productsRouter)
 
 const PORT = 5000;
-//connectDb();
+connectDb();
 
-export function init(): Promise<Express> {
-    connectDb();
-    return Promise.resolve(app);
-  }
-  
-  export async function close(): Promise<void> {
-    await disconnectDB();
-}
 app.listen(PORT, () => console.log(`Server is runnin on port ${PORT}`));
