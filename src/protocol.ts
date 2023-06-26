@@ -16,7 +16,8 @@ export type ApplicatonError = {
 };
 
 export type Product = {
-    fromWhere: string,
+    userId: number
+    font: string,
     month: number,
     energy_amount: number,
     price: number

@@ -7,6 +7,6 @@ import express from "express";
 const productsRouter = express.Router();
 
 productsRouter.get('/', loadProducts, getProducts, findProducts);
-productsRouter.post('/create', insertProducts, postProducts, createProducts);
+productsRouter.post('/create', checkJWT, insertProducts, postProducts, createProducts);
 
 export { productsRouter };

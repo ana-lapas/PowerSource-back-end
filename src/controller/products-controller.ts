@@ -18,11 +18,12 @@ export async function loadProducts(req: Request, res: Response) {
 }
 
 export async function insertProducts(req: Request, res: Response) {
-  const { fromWhere, month, energy_amount, price} = req.body as Product;
+  const userId = res.locals.userId;
+  const { font, month, energy_amount, price} = req.body as Product;
   try {
-    const products = await postProducts({fromWhere, month, energy_amount, price});
-    return res.status(httpStatus.OK).send(products.id);
+    const products = await postProducts({userId, font, month, energy_amount, price});
+    return res.sendStatus(httpStatus.OK).send(products.id);
   } catch (error) {
-    return res.status(httpStatus.BAD_REQUEST).send(error);
+    return res.sendStatus(httpStatus.BAD_REQUEST).send(error);
   }
 }

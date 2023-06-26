@@ -6,12 +6,13 @@ export async function findProducts() {
     return await prisma.products.findMany();
 }
 
-export async function createProducts({ fromWhere, month, energy_amount, price }: Product) {
+export async function createProducts({ userId, font, month, energy_amount, price }: Product) {
     return await prisma.products.create({
         data: {
+            user_id: userId,
             energy_amount,
             price,
-            font: fromWhere,
+            font,
             month,
             available: true,
         }

@@ -9,8 +9,8 @@ export async function getProducts() {
     return products;
 }
 
-export async function postProducts({ fromWhere, month, energy_amount, price }: Product) {
-    const productsData = {  fromWhere, month, energy_amount, price};
+export async function postProducts({ userId, font, month, energy_amount, price }: Product) {
+    const productsData = { userId, font, month, energy_amount, price};
     const newProduct = await createProducts(productsData);
     return ({id: newProduct.id});
 }
