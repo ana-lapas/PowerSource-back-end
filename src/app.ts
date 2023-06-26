@@ -16,7 +16,7 @@ app
     .use('/auth', usersRouter)
     .use('/products', productsRouter)
 
-const PORT = 5000;
+const port: number = 5000 || Number(process.env.PORT);
 connectDb();
 
-app.listen(PORT, () => console.log(`Server is runnin on port ${PORT}`));
+app.listen(port, () => console.log(`Server is runnin on port ${port}`));
