@@ -12,7 +12,7 @@ export async function verifyUser({ name, password, cpf, email }: User) {
         throw missingInformationError('There is a missing information');
     }
     const existingUser = await findUserByCPF(cpf);
-    if (!existingUser) {
+    if (existingUser) {
         throw conflictError("There was a conflict about the information provided");
     }
     const hashedPassword = await bcrypt.hash(password, 10);

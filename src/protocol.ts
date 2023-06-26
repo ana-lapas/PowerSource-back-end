@@ -14,3 +14,10 @@ export type ApplicatonError = {
     name: string;
     message: string;
 };
+
+export type Product = {
+    fromWhere: string,
+    month: number,
+    energy_amount: number,
+    price: number
+}

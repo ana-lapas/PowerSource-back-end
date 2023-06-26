@@ -18,6 +18,7 @@ model operation {
   users_operation_buyer_idTousers  users?    @relation("operation_buyer_idTousers", fields: [buyer_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   products                         products? @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   users_operation_seller_idTousers users?    @relation("operation_seller_idTousers", fields: [seller_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  @@map("operation")
 }
 
 model products {
@@ -30,17 +31,7 @@ model products {
   available     Boolean
   operation     operation[]
   users         users?      @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-}
-
-model sources {
-  id                Int     @id @default(autoincrement())
-  user_id           Int?
-  address           String
-  zip_code          String  @db.Char(8)
-  state             String
-  city              String
-  other_information String?
-  users             users?  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  @@map("products")
 }
 
 model users {
@@ -52,5 +43,5 @@ model users {
   operation_operation_buyer_idTousers  operation[] @relation("operation_buyer_idTousers")
   operation_operation_seller_idTousers operation[] @relation("operation_seller_idTousers")
   products                             products[]
-  sources                              sources[]
+@@map("users")
 }

@@ -8,8 +8,9 @@ export async function usersCreate(req: Request, res: Response) {
 
   try {
     const user = await verifyUser({  name, cpf, email, password });
-    return res.status(httpStatus.CREATED);
+    return res.status(httpStatus.CREATED).send(user.email);
   } catch (error) {
+    console.log(error)
     if (error.name === 'Conflict Error') {
       return res.status(httpStatus.CONFLICT).send(error);
     }
