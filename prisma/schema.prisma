@@ -9,9 +9,9 @@ datasource db {
 
 model operation {
   id                               Int       @id @default(autoincrement())
-  product_id                       Int?
-  seller_id                        Int?
-  buyer_id                         Int?
+  product_id                       Int
+  seller_id                        Int
+  buyer_id                         Int
   quantity                         Int
   price                            Decimal   @db.Decimal(10, 2)
   purchase_date                    DateTime  @db.Date
@@ -23,7 +23,7 @@ model operation {
 
 model products {
   id            Int         @id @default(autoincrement())
-  user_id       Int?
+  user_id       Int
   energy_amount Decimal     @db.Decimal(10, 2)
   price         Decimal     @db.Decimal(10, 2)
   font          String

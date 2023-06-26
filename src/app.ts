@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { usersRouter } from "./routers/users-router";
 import { productsRouter } from "./routers/products-router";
-import { connectDb, disconnectDB } from "./config/database";
+import { connectDb } from "./config/database";
 import { Express } from "express";
 
 dotenv.config();

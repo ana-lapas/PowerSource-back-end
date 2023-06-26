@@ -2,7 +2,7 @@ import { Product } from './../protocol';
 import { getProducts, postProducts } from '../service/products-service';
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
-import { notFoundError } from '../errors';
+import { notFoundError } from '../errors/not-found-error';
 
 export async function loadProducts(req: Request, res: Response) {
   try {
@@ -11,9 +11,9 @@ export async function loadProducts(req: Request, res: Response) {
     return res.status(httpStatus.OK).send(products);
   } catch (error) {
     if (error.name === 'Not found Error') {
-      return res.status(httpStatus.NOT_FOUND).send(error);
+      return res.sendStatus(httpStatus.NOT_FOUND).send(error);
     }
-    return res.status(httpStatus.BAD_REQUEST).send(error);
+    return res.sendStatus(httpStatus.BAD_REQUEST).send(error);
   }
 }
 

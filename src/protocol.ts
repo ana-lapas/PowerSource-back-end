@@ -22,3 +22,11 @@ export type Product = {
     energy_amount: number,
     price: number
 }
+
+export type NewOperation = {
+    buyer_Id: number
+    product_id: number
+    seller_id: number
+    quantity: number
+    price: number
+}
