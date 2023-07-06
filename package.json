@@ -8,6 +8,7 @@
     "build": "npm install && tsc",
     "migration:prod": "prisma migrate deploy",
     "start": "npm run migration:prod && npm run seed && node ./src/app.ts",
+    "prisma:generate": "npx prisma generate",
     "dev": "nodemon ./src/app.ts",
     "seed": "prisma db seed"    
   },
