@@ -7,16 +7,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm install && tsc",
     "migration:prod": "prisma migrate deploy",
-    "start": "npm run prisma migrate deploy && npm run seed && node ./src/app.ts",
+    "start": "npm run migration:prod && npm run seed && node ./src/app.ts",
     "dev": "nodemon ./src/app.ts",
-    "seed": "prisma db seed"
+    "seed": "prisma db seed"    
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "prisma": {
+  "prisma":{
     "seed": "ts-node prisma/seed.ts"
   },
+  "keywords": [],
+  "author": "Ana Paula Lapas Leão",
+  "license": "ISC",
+  
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.13",
